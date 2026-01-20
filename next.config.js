@@ -7,4 +7,4 @@ const nextConfig = {
   outputFileTracingRoot: "/",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
