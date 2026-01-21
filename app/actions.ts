@@ -5,22 +5,22 @@ import { AzureOpenAI } from "openai";
 
 // Initialize Azure OpenAI client
 const createOpenAIClient = () => {
-  const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "";
-  const apiKey = process.env.AZURE_OPENAI_API_KEY || "";
-  const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_ID || "gpt-4o-mini";
+  const baseUrl = process.env.OPENAI_BASE_URL || "";
+  const apiKey = process.env.OPENAI_API_KEY || "";
+  const deployment = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
-  if (!endpoint || !apiKey) {
+  if (!baseUrl || !apiKey) {
     throw new Error(
-      "Missing Azure OpenAI configuration: AZURE_OPENAI_ENDPOINT or AZURE_OPENAI_API_KEY"
+      "Missing OpenAI configuration: OPENAI_BASE_URL or OPENAI_API_KEY"
     );
   }
 
   return new AzureOpenAI({
     apiKey,
     apiVersion: "2024-08-01-preview",
-    baseURL: endpoint.endsWith("/") 
-      ? `${endpoint}openai/deployments/${deployment}` 
-      : `${endpoint}/openai/deployments/${deployment}`,
+    baseURL: baseUrl.endsWith("/") 
+      ? `${baseUrl}openai/deployments/${deployment}` 
+      : `${baseUrl}/openai/deployments/${deployment}`,
   });
 };
 
@@ -159,7 +159,7 @@ export async function generateRemix(
     const variationPromises = generationTasks.map(async (task) => {
       try {
         const response = await client.chat.completions.create({
-          model: process.env.AZURE_OPENAI_DEPLOYMENT_ID || "gpt-4o-mini",
+          model: process.env.OPENAI_MODEL || "gpt-4o-mini",
           messages: [
             {
               role: "system",

@@ -79,9 +79,9 @@ cp .env.local.example .env.local
 Required variables:
 - `NEXT_PUBLIC_COSMOS_ENDPOINT` - Cosmos DB endpoint URL
 - `COSMOS_KEY` - Cosmos DB primary key
-- `AZURE_OPENAI_API_KEY` - Azure OpenAI API key
-- `AZURE_OPENAI_ENDPOINT` - Azure OpenAI endpoint URL
-- `AZURE_OPENAI_DEPLOYMENT_ID` - Deployment ID for GPT-4o model
+- `OPENAI_API_KEY` - Azure OpenAI API key
+- `OPENAI_BASE_URL` - Azure OpenAI endpoint URL
+- `OPENAI_MODEL` - Deployment ID for GPT-4o model
 - `LINKEDIN_CLIENT_ID` - LinkedIn OAuth Client ID
 - `LINKEDIN_CLIENT_SECRET` - LinkedIn OAuth Client Secret
 - `NEXTAUTH_SECRET` - Session encryption secret (auto-generate: `openssl rand -base64 32`)
